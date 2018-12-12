@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{% for profil in profils %} {{ profil.presentation }} {{ profil.presentation }}{% endfor%}">
+    <meta name="author" content="{% for user in users %} {{ user.firstname }} {{ user.lastname }}{% endfor%}">
+	<title>CV {% for user in users %} {{ user.firstname }} {{ user.lastname }}{% endfor%}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  
+    <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- fontawesome -->
+    <link href="{{ asset('fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="{{ asset('simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet" type="text/css">
+
+
+  
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/landing-page.min.css') }}" rel="stylesheet">
+    <!-- Add my CSS -->
+  
+<!--ck editor 4-->
+<!-- <script src="ckeditor/ckeditor.js"></script> -->
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js"></script>
+
+
+<script> 
+ 	$(function() {
+		$('#typeit').typeIt({
+		  strings: ["INTÉGRATEUR."," DÉVELOPPEUR WEB","BOOTSTRAP.","jQuery.","Mysql.","WORDPRESS","PHP 7","HTML 5", "CSS 3"],
+		   speed: 225,
+		   deleteSpeed:150,
+		   breakDelay:8000,
+		   loopDelay:8000,
+		   loop:true,
+		   breakLines:false
+          });
+          
+
+          $(".fondu").click(function(){
+		$('.fondu img').eq(1).fadeToggle(1000);
+	});
+
+		});
+</script>
+</head>
+
+<body>
+
+ 
+	<!-- Navigation -->
+    <nav id="nav1" class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5">
+    
+      <div class="container">
+        <!-- La marque -->
+       <!-- <a class = "navbar-brand" href="<?php echo RACINE_SITE index.php "><i class="fab fa-phoenix-framework">&nbsp;&nbsp;CV PORTFOLIO</i></a> -->
+       
+        <!-- Le burger -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        
+        <!-- Le menu -->
+        <div class="collapse navbar-collapse" id="nav1">
+        	<ul class="navbar-nav ml-auto">
+            	
+                <!-- //<li><a class="nav-link" href = " RACINE_SITE index.php">HOME</a></li> -->
+                <a class="nav-link" href = "{{ path('home') }}"><i class="fab fa-phoenix-framework">&nbsp;&nbsp;</i>CV PORTFOLIO</a></li>
+               
+                {% if not app.user %}
+
+                  <li><a class="nav-link" href = "{{ path('security_registration') }}">Inscription</a></li>
+                  <li><a class="nav-link" href = "{{ path('security_login') }}"><i class="fas fa-sign-in-alt">&nbsp;&nbsp;Connexion</i></a></li>
+                {% else %}
+                  <li><a class="nav-link" href = "{{ path('security_logout') }}">Se déconnecter</a></li>
+                  <li><a class="nav-link" href = "{{ path('admin') }}">Gestion de mon CV</a></li>
+                  <li><a class="nav-link" href = "">{% for user in users %} {{ user.firstname }} {{ user.lastname }}{% endfor%}</a></li>
+                {% endif %}
+            
+               
+        	</ul>
+        </div>
+      </div>
+    </nav>
+
+ 
+                <!-- Ici nous aurons le contenu spécifique de notre page -->
+                <header class="masthead text-white text-center">
+                  <div class="overlay"></div>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xl-9 mx-auto">
+                        <h2 class="mb-5">INTÉGRATEUR / DÉVELOPPEUR WEB</h2>
+                        <h2 class="mb-5">
+                                {% for user in users %} {{ user.firstname }} {{ user.lastname }}{% endfor%}
+                        </h2>
+                        <h4>{% for profil in profils %} {{ profil.presentation | raw }} {% endfor%}</h4>
+                      </div>
+                      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                        <form method="post">
+                          <div class="form-row">
+                            
+                              <div class="col-12 col-md-9 mb-5 mb-md-2 mb-lg-2">
+            
+                              <h4 class="mt-5"><span id="typeit"></span></h4>
+                                 
+                                
+                              </div>
+                            
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+            </header>
+            
+                 <!-- Icons Grid 1 -->
+             <section class="features-icons bg-light text-center">
+                
+                    <h4>EXPÉRIENCES WEB</h4>
+                    <div class="row d-flex justify-content-center">
+                        <div class="card-columns">
+                            <div class="features-icons-item mx-auto mb-5 mb-md-3 mb-lg-3">
+                                <div class="features-icons-icon d-flex">
+                                    <i class="icon-layers m-auto text-primary"></i>
+                                </div>
+                                <h4>FRONT</h4>
+                                {% for front in fronts %}
+                                    <div class ="card">
+                                            
+                                        <img class="img-fluid" src="{{ asset('photo/' ~ front.photo) }}">{{ front.name }}
+                                    <div class="card-body">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: {{ front.niveau }}% ;">{{ front.niveau }}%</div>
+                                        </div> 
+                                    </div> 
+                                    </div>
+                               {% endfor %}
+                                
+                            </div>
+                            
+                            <div class="features-icons-item mx-auto mb-md-3 mb-lg-3">
+                                <div class="features-icons-icon d-flex">
+                                    <i class="icon-check m-auto text-primary"></i>
+                                </div>
+                                <h4>FRAMEWORK</h4>
+                                {% for framework in frameworks %}
+                                <div class ="card">
+                                        
+                                      <img class="img-fluid" src="{{ asset('photo/' ~ framework.photo) }}">{{ framework.name }}
+                                  <div class="card-body">
+                                      <div class="progress xs">
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: {{ framework.niveau }}% ;">{{ framework.niveau }}%</div>
+                                      </div> 
+                                  </div> 
+                              </div>
+                               {% endfor %}
+                               
+                            </div>
+            
+                            <div class="features-icons-item mx-auto mb-5 mb-md-3 mb-lg-3">
+                                <div class="features-icons-icon d-flex">
+                                    <i class="icon-screen-desktop m-auto text-primary"></i>
+                                </div>
+                                <h4>BACK</h4>
+                                {% for back in backs %}
+                                <div class ="card">
+                                        
+                                      <img class="img-fluid" src="{{ asset('photo/' ~ back.photo) }}">{{ back.name }}
+                                  <div class="card-body">
+                                      <div class="progress xs">
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: {{ back.niveau }}% ;">{{ back.niveau }}%</div>
+                                      </div> 
+                                  </div> 
+                              </div>
+                               {% endfor %}
+                               
+                             {% for cms in cmss %}
+                              <div class ="card">
+                                    <h4>CMS</h4>
+                                    <img class="img-fluid" src="{{ asset('photo/' ~ cms.photo) }}">{{ cms.name }}
+                                    <div class="card-body">
+                                        <div class="progress xs">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: {{ cms.niveau }}% ;">{{ cms.niveau }}%</div>
+                                        </div> 
+                                    </div> 
+                                </div>
+                             {% endfor %}
+                         
+                            </div>
+                        </div>
+                      
+                        
+                    </div>
+                
+            </section>
+            
+                <!-- Image Showcases -->
+            <section class="showcase">
+                <div class="container-fluid my-auto">
+                    <div class="row d-flex no-gutters">
+                        <div class="col-lg-6 col-md-6 col-sm-12 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg'); background-repeat: no-repeat; background-size: 100%;"></div>
+                        <div  class="col-lg-6 col-md-6 col-sm-12 order-lg-1 my-auto">
+                            <h4 class="text-center">EXPÉRIENCES INFORMATIQUE && WEB</h4>
+                            {% for experience in experiences %} 
+                            <div  class ="card m-auto" style="max-width: 35rem;">
+                                <p class="text-primary">{{ experience.type }}</p>
+                                <p>{{ experience.anneeDebut | date('Y') }} -  {{ experience.dateFin | date('Y') }}</p>
+                                <p>&nbsp;<a href=" {{ experience.siteWeb }}"><i class="fas fa-map-marker-alt"></i></a>&nbsp;&nbsp;{{ experience.entreprise }}</p>
+                             </div>
+                            {% endfor%}
+                        </div>
+                    </div>
+                    <div class="row d-flex no-gutters">
+                        <div class="col-lg-6 col-md-6 col-sm-12 order-lg-1 text-white showcase-img" style="background-image: url('img/bg-ipad1.jpg'); background-repeat: no-repeat; background-size: 100%;"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 order-lg-2 my-auto ">
+                        <h4 class="text-center">CONTACT</h4>
+                        <a href=""></a>
+
+
+                       <div  class ="card m-auto" style="max-width: 35rem;">
+                            <div class="card-body">
+                                {% for user in users %} 
+                                    <p>&nbsp;&nbsp;<i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp; {{ user.address }} &nbsp;&nbsp; {{ user.codePostal }} &nbsp;&nbsp; {{ user.ville }} </p>
+                                    <p>&nbsp;&nbsp;<i class="fas fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:{{ user.ville }}" target="_blank">{{ user.email }}</a></p>
+                                    <p><a href="tel: {{ user.phone }}"><i class="fas fa-phone">&nbsp;&nbsp;{{ user.phone }}</i></a></p>
+                                    <hr>
+                                    <a href="https://www.google.com/maps/dir//19+Rue+Ren%C3%A9+Camier,+Bobigny/@48.9093413,2.4492104,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x47e66cc8b36daa8b:0x435833c0e5dfc707!2m2!1d2.4513991!2d48.9093413"  target="_blank"><button type="button" class="btn btn-outline-primary"><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Comment venir</button></a>
+                                {% endfor%}
+                            </div>
+                        </div>
+                       
+                        
+                        </div>
+                    </div>
+            
+                    <div class="row d-flex no-gutters">
+                        <div class="col-lg-6 col-md-6 col-sm-12 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg'); background-repeat: no-repeat; background-size: 100%;"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 order-lg-1 my-auto ">
+                            <h4 class="text-center">FORMATIONS</h4>
+                            <a href=""></a>
+                          
+                            {% for formation in formations %} 
+                                <div class ="card m-auto" style="max-width: 35rem;">
+                                    <div class="card-body">
+                                        <p><a href="">{{ formation.diplome }}</a>&nbsp;&nbsp; formation.diplome  &nbsp;&nbsp;  {{ formation.institut }}</p>
+                                        <p>&nbsp;{{ formation.anneeScolaire | date('Y') }}&nbsp;&nbsp; * &nbsp;Mention&nbsp;&nbsp; * {{ formation.mention }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>  
+                        
+                </div>
+          
+            </section>
+            
+            
+            
+            <section class="features-icons bg-light text-center">
+                <div class="container">
+                    <h4>LOISIRS</h4>
+                    <div class="features-icons-item mx-auto mb-5 mb-md-3 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="icon-check m-auto text-primary"></i>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="card-columns" style="min-width: 70rem;">
+                                {% for loisir in loisirs %} 
+                                    <img class="card-img-top img-responsive" src="{{ asset('photo/' ~ loisir.photo) }}">
+                                
+                                    <div class="card-body">
+                                        <p><a href="">{{ loisir.icon | raw }}</a>&nbsp;&nbsp;  {{ loisir.name }}  </p>
+                                    </div>   
+                                {% endfor %}                
+                      
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </section> 
+            
+            <section class="features-icons bg-light text-center">
+                <div class="container">
+                    <h4>RÉALISATIONS</h4>
+                    <div class="features-icons-item mx-auto mb-5 mb-md-3 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="icon-check m-auto text-primary"></i>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="card-columns">
+                            <a href="https://les-etoiles.000webhostapp.com/" target="_blank"><h4>WORDPRESS</h4></a>
+                                <iframe src="https://les-etoiles.000webhostapp.com/" frameborder="0" width="400px" height="300px"></iframe>
+                                <a href="https://myessad.ma6tvacoder.org/" target="_blank"><h4>CV PORTFOLIO</h4></a>
+                                <iframe src="https://myessad.ma6tvacoder.org/" frameborder="0" width="400px" height="300px"></iframe>
+                                
+                                <a href="https://les-etoiles.000webhostapp.com/" target="_blank"><h4>Les éltoiles</h4></a>
+                                <iframe src="https://les-etoiles.000webhostapp.com/" frameborder="0" width="400px" height="300"></iframe>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </section> 
+               
+            
+            
+            
+            <div id="carouselExampleIndicators" class="carousel slide mt-5" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+            
+            <div class="carousel-inner  radiuscarousel">
+                <div class="carousel-item active">
+                    <a href="#"> <img class="d-block w-100" src="{{ asset('photo/Desert.jpg') }}" alt="First slide"></a>
+                    <div class="carousel-caption d-none d-md-block">
+                    <img src="" alt="">
+                        <h4></h4>
+                        <p>...</p>
+                    </div>
+                </div>
+            
+                <div class="carousel-item">
+                    <a href=""> <img class="d-block w-100" src="{{ asset('photo/Jellyfish.jpg') }}" alt="Second slide"></a>
+                    <div class="carousel-caption d-none d-md-block">
+                    <img src="" alt="">
+                        <h4></h4>
+                        <p>...</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href=""> <img class="d-block w-100" src="{{ asset('photo/Hydrangeas.jpg') }}" alt="Third slide"></a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <img src="" alt="">
+                        <h4></h4>
+                        <p>...</p>
+                    </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            
+             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+  <!-- Footer -->
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            {% if app.user %}
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                    <a href="{{ path('security_logout') }}">Se déconnexion</a> 
+                </li>
+            {% else %}
+                <li class="list-inline-item">
+                <a href="">About</a>
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                    <a href="{{ path('security_login') }}">Connexion</a> 
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                <a href="{{ path('security_registration') }}">Inscription</a>
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                <a href="">Contact</a>
+                </li>
+            {% endif %}
+           
+            
+    
+                  
+           
+            
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+             
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ asset('jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.typeit/4.2.3/typeit.min.js"></script>
+
+
+    
