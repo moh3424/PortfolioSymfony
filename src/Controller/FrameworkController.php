@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 
 use App\Form\FrameworkType;
 use App\Entity\User;
 use App\Entity\Framework;
-use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FrameworkController extends AbstractController
 {
@@ -33,9 +33,9 @@ class FrameworkController extends AbstractController
             // On verra plustard la validation
             $em = $this -> getDoctrine() -> getManager();
             $em -> persist($framework);
-          
+            $framework -> chargementPhoto();
             $em -> flush();
-            return $this -> redirectToRoute('update_framework');
+            return $this -> redirectToRoute('framework');
             $request -> getSession() -> getFlashBag() -> add('success', 'Félicitations le framework a été mis à jour !');
         }
         $params = array(

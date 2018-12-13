@@ -3,13 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Framework;
+use Webmozart\Assert\Assert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class FrameworkType extends AbstractType
 {
@@ -17,7 +16,7 @@ class FrameworkType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('photo')
+            -> add('file', FileType::class)
             ->add('niveau')
             -> add('Modifier', SubmitType::class, array(
                 'attr'=> array(

@@ -2,22 +2,18 @@
 
 namespace App\Form;
 
-use App\Entity\Back;
-use Webmozart\Assert\Assert;
+use App\Entity\Profil;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class BackType extends AbstractType
+class ProfilType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            -> add('file', FileType::class)
-            ->add('niveau')
+            ->add('presentation')
             -> add('Modifier', SubmitType::class, array(
                 'attr'=> array(
                    'class' => "btn-success"
@@ -29,7 +25,7 @@ class BackType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Back::class,
+            'data_class' => Profil::class,
         ]);
     }
 }

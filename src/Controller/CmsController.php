@@ -35,7 +35,7 @@ class CmsController extends AbstractController
             // On verra plustard la validation
             $em = $this -> getDoctrine() -> getManager();
             $em -> persist($cms);
-          
+            $cms -> chargementPhoto();
             $em -> flush();
             $request -> getSession() -> getFlashBag() -> add('success', 'Félicitations le cms a été mis à jour !');
             return $this -> redirectToRoute('cms');

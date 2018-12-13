@@ -231,22 +231,29 @@ class User implements UserInterface
 
     public function getSalt()
     {
-        
+        return null;   
     }
 
+    
+    private $file;
+    // Getter et setter de file
+    public function setFile(UploadedFile $file = NULL){
+        // la classe UploadedFile de symfony nous permet de gérer tous les fichiers uploadés.
+        $this->file = $file;
+        return $this;
+    }
+    public function getFile(){
+        return $this->file;
+    }
+    
+    // public function __construct()
+    // {
+    //     $this->roles = array('ROLE_ADMIN');
+    // }
+    // public $roles;
     public function getRoles()
     {
         return ['ROLE_USER'];
     }
 
-    private $file;
-    // Getter et setter de file
-       public function setFile(UploadedFile $file = NULL){
-           // la classe UploadedFile de symfony nous permet de gérer tous les fichiers uploadés.
-           $this -> file = $file;
-           return $this;
-       }
-       public function getFile(){
-           return $this -> file;
-       }
 }

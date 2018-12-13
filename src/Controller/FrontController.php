@@ -32,7 +32,7 @@ class FrontController extends AbstractController
             // On verra plustard la validation
             $em = $this -> getDoctrine() -> getManager();
             $em -> persist($front);
-          
+            $front -> chargementPhoto();
             $em -> flush();
             return $this -> redirectToRoute('front');
            
@@ -60,7 +60,7 @@ class FrontController extends AbstractController
         $em -> flush();
         $session = $request -> getSession();
         $session -> getFlashBag() -> add('success', 'Le front n°' . $id . 'a été supprimé'); 
-        // return new Response("OK, le front de l'id:" . $id . " a été supprimé, avec succès ! "); 
+        return new Response("OK, le front de l'id:" . $id . " a été supprimé, avec succès ! "); 
         return $this -> redirectToRoute('front');
         
         

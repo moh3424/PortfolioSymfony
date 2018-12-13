@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+// use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -77,37 +78,37 @@ class Back
  // Getter et setter de file
     public function setFile(UploadedFile $file = NULL){
         // la classe UploadedFile de symfony nous permet de gérer tous les fichiers uploadés.
-        $this -> file = $file;
+        $this->file = $file;
         return $this;
     }
     public function getFile(){
-        return $this -> file;
+        return $this->file;
     }
 
-    //  // Fonction pour charger un fichier 
-    //  public function chargementPhoto(){
-    //     if($this -> file) {
-    //         $nom_original = $this -> file -> getClientOriginalName();
-    //         // cette méthode me retourne le nom original de la photo
-    //         // équivalent à : $_FILES['photo']['name']
-    //         $new_nom_photo = $this -> renameFile($nom_original);
-    //         // me retourne le nom du fichier modifié
-    //         $this -> photo = $new_nom_photo;
-    //         // Pour enregistrer dans la BDD le nouveau nom de la photo...
-    //         $this -> file -> move($this -> photoDir(), $new_nom_photo);
-    //         // move() permet de déplacer la photo (physiquement, c'est à dire les octets qui compose le fichier du photo) vers son emplacement définitif. L'arguments : 1/ Le dossier de destination, 2/ le nom de la photo. 
-    //     }
-    // }
+    // Fonction pour charger un fichier 
+     public function chargementPhoto(){
+        if($this->file) {
+            $nom_original = $this->file-> getClientOriginalName();
+            // cette méthode me retourne le nom original de la photo
+            // équivalent à : $_FILES['photo']['name']
+            $new_nom_photo = $this -> renameFile($nom_original);
+            // me retourne le nom du fichier modifié
+            $this->photo = $new_nom_photo;
+            // Pour enregistrer dans la BDD le nouveau nom de la photo...
+            $this->file -> move($this->photoDir(), $new_nom_photo);
+            // move() permet de déplacer la photo (physiquement, c'est à dire les octets qui compose le fichier du photo) vers son emplacement définitif. L'arguments : 1/ Le dossier de destination, 2/ le nom de la photo. 
+        }
+    }
 
-    //   // Fonction pour renomer une fonction
-    //   public function renameFile($nom_original){
-    //     // $nom_original = cms.jpg
-    //     return 'photo_' . time() . '_' . rand(1, 9999) . $nom_original;
-    //     // exemple : photo_15225554523_666_cms.jpg
-    // }
+      // Fonction pour renomer une fonction
+      public function renameFile($nom_original){
+        // $nom_original = cms.jpg
+        return 'photo_' . time() . '_' . rand(1, 9999) . $nom_original;
+        // exemple : photo_15225554523_666_cms.jpg
+    }
     
     // // Fonction pour retourner le chemin du dossier du photo 
-    // public function photoDir(){
-    //     return __DIR__ . '/../../../public/photo';
-    // }
+    public function photoDir(){
+        return __DIR__ . '/../../public/photo';
+    }
 }

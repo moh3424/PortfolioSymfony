@@ -73,6 +73,7 @@ class AdminController extends AbstractController
     }
     
     /**
+     * 
      * @Route("/admin", name="admin")
      */
     public function index()
@@ -190,70 +191,23 @@ class AdminController extends AbstractController
             'frameworks'=> $frameworks,
         ]);
     }
-    
-    /**
-     * @Route("/admin/dashbord", name="dashbord")
+
+     /**
+     * 
+     * @Route("/admin/profil", name="profil")
      */
-    public function dashbord()
+    public function profil()
     {
         $repoUser = $this -> getDoctrine()->getRepository(User::class);
         $users = $repoUser->findAll();
-        return $this->render('admin/index2.html.twig', [
-            'controller_name' => 'AdminController',
+
+        $repoProfil = $this -> getDoctrine()->getRepository(Profil::class);
+        $profils = $repoProfil->findAll();
+        return $this->render('admin/profil.html.twig', [
             'users'=> $users,
-          
-            
+            'profils'=> $profils,
         ]);
     }
-
-
-    /**
-     * @Route("/admin/topNav", name="topNav")
-     */
-    public function topNav()
-    {
-        $repoUser = $this -> getDoctrine()->getRepository(User::class);
-        $users = $repoUser->findAll();
-        return $this->render('admin/top-nav.html.twig', [
-            'users'=> $users,
-        ]);
-    }
-
-    /**
-     * @Route("/admin/boxed", name="boxed")
-     */
-    public function boxed()
-    {
-        $repoUser = $this -> getDoctrine()->getRepository(User::class);
-        $users = $repoUser->findAll();
-        return $this->render('admin/boxed.html.twig', [
-            'users'=> $users,
-        ]);
-    }
-
-    /**
-     * @Route("/admin/fixed", name="fixed")
-     */
-    public function fixed()
-    {
-        $repoUser = $this -> getDoctrine()->getRepository(User::class);
-        $users = $repoUser->findAll();
-        return $this->render('admin/fixed.html.twig', [
-            'users'=> $users,
-        ]);
-    }
-    /**
-     * @Route("/admin/collapsedSidebar", name="collapsedSidebar")
-     */
-    public function collapsedSidebar()
-    {
-        $repoUser = $this -> getDoctrine()->getRepository(User::class);
-        $users = $repoUser->findAll();
-        return $this->render('admin/collapsed-sidebar.html.twig', [
-            'users'=> $users,
-        ]);
-    }
-
     
     /**
      * @Route("/admin/calendar", name="calendar")
@@ -267,24 +221,5 @@ class AdminController extends AbstractController
         ]);
     }
 
- 
-
-   
-
-    /**
-     * @Route("/admin/timeline", name="timeline")
-     */
-    public function timeline()
-    {
-        return $this->render('admin/timeline.html.twig');
-    }
-
-    /**
-     * @Route("/admin/sliders", name="sliders")
-     */
-    public function sliders()
-    {
-        return $this->render('admin/sliders.html.twig');
-    }
 
 }

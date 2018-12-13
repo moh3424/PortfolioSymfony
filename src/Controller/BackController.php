@@ -33,7 +33,7 @@ class BackController extends AbstractController
             // On verra plustard la validation
             $em = $this -> getDoctrine() -> getManager();
             $em -> persist($back);
-          
+            $back -> chargementPhoto();
             $em -> flush();
             $request -> getSession() -> getFlashBag() -> add('success', 'Félicitations le cms a été mis à jour !');
             return $this -> redirectToRoute('back');
