@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 12 déc. 2018 à 12:22
+-- Généré le :  lun. 07 jan. 2019 à 11:35
 -- Version du serveur :  10.1.34-MariaDB
 -- Version de PHP :  7.2.8
 
@@ -40,8 +40,8 @@ CREATE TABLE `back` (
 --
 
 INSERT INTO `back` (`id`, `name`, `photo`, `niveau`) VALUES
-(1, 'PHP7', 'php1.png', 70),
-(3, 'MySql', 'mysql1.png', 60);
+(3, 'MySql', 'mysql1.png', 60),
+(4, 'PHP 7', 'photo_1544784869_1640php2.png', 50);
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE `cms` (
 --
 
 INSERT INTO `cms` (`id`, `name`, `photo`, `niveau`) VALUES
-(2, 'Wordpress', 'glass-wordpress-logo1.png', 100);
+(3, 'wordpress', 'photo_1544696528_7770glass-wordpress-logo1.png', 50);
 
 -- --------------------------------------------------------
 
@@ -149,7 +149,7 @@ CREATE TABLE `front` (
 --
 
 INSERT INTO `front` (`id`, `name`, `photo`, `niveau`) VALUES
-(1, 'HTML 5', 'html1.png', 98),
+(1, 'HTML 5', 'photo_1544696257_3199css31.png', 100),
 (2, 'CSS3', 'css31.png', 80),
 (19, 'JavaScript', 'js1.jpg', 93);
 
@@ -210,7 +210,10 @@ INSERT INTO `migration_versions` (`version`) VALUES
 ('20181205100743'),
 ('20181205101857'),
 ('20181211104714'),
-('20181211110256');
+('20181211110256'),
+('20181213082041'),
+('20181213084501'),
+('20181213111723');
 
 -- --------------------------------------------------------
 
@@ -228,7 +231,7 @@ CREATE TABLE `profil` (
 --
 
 INSERT INTO `profil` (`id`, `presentation`) VALUES
-(1, 'Passionné de numérique, je me suis formé en autodidacte sur les langages web depuis plusieurs années.<br>\r\n \r\nActuellement en formation de développeur web, je suis à la recherche d\'un stage de deux mois (Janvier/février 2019).');
+(1, 'Passionner du numérique, je me suis formé en autodidacte sur les langages web depuis plusieurs années.<br>\r\n \r\nActuellement en formation de développeur web, je suis à la recherche d\'un stage de deux mois (Janvier/février 2019).');
 
 -- --------------------------------------------------------
 
@@ -384,13 +387,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `back`
 --
 ALTER TABLE `back`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `cms`
 --
 ALTER TABLE `cms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `experience`

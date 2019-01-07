@@ -26,7 +26,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home()
+    public function homeAdmin()
     {
         $repoUser = $this -> getDoctrine()->getRepository(User::class);
         $users = $repoUser->findAll();
@@ -71,6 +71,55 @@ class AdminController extends AbstractController
             'cmss'=> $cmss
         ]);
     }
+
+    // /**
+    //  * @Route("/CVSymfony/portfolio/public", name="home")
+    //  */
+    // public function homePublic()
+    // {
+    //     $repoUser = $this -> getDoctrine()->getRepository(User::class);
+    //     $users = $repoUser->findAll();
+
+    //     $repoSpecialite = $this -> getDoctrine()->getRepository(Specialite::class);
+    //     $specialites = $repoSpecialite->findAll();
+
+    //     $repoExperience = $this -> getDoctrine()->getRepository(Experience::class);
+    //     $experiences = $repoExperience->findAll();
+        
+    //     $repoFormation = $this -> getDoctrine()->getRepository(Formation::class);
+    //     $formations = $repoFormation->findAll();
+
+    //     $repoProfil = $this -> getDoctrine()->getRepository(Profil::class);
+    //     $profils = $repoProfil->findAll();
+        
+    //     $repoLoisir = $this -> getDoctrine()->getRepository(Loisir::class);
+    //     $loisirs = $repoLoisir->findAll();
+        
+    //     $repoFront = $this -> getDoctrine()->getRepository(Front::class);
+    //     $fronts = $repoFront->findAll();
+        
+    //     $repoBack = $this -> getDoctrine()->getRepository(Back::class);
+    //     $backs = $repoBack->findAll();
+        
+    //     $repoFramework = $this -> getDoctrine()->getRepository(Framework::class);
+    //     $frameworks = $repoFramework->findAll();
+
+    //     $repoCms = $this -> getDoctrine()->getRepository(Cms::class);
+    //     $cmss = $repoCms->findAll();
+
+    //     return $this->render('admin/home.html.twig', [
+    //         'users'=> $users,
+    //         'specialites'=> $specialites,
+    //         'experiences'=> $experiences,
+    //         'formations' => $formations,
+    //         'profils' => $profils,
+    //         'loisirs'=> $loisirs,
+    //         'fronts'=> $fronts,
+    //         'backs'=> $backs,
+    //         'frameworks'=> $frameworks,
+    //         'cmss'=> $cmss
+    //     ]);
+    // }
     
     /**
      * 
